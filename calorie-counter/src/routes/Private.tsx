@@ -1,18 +1,16 @@
 import {Navigate, Outlet} from "react-router-dom";
+import CRUDTable from '../components/CRUDTable';
 import useAuth from "../providers/authProvider";
 
 export default function Private() {
   return (<>
-      <h1>Private</h1>
+      <h1>Entries</h1>
+      <CRUDTable/>
   </>  );
 }
 
 export function PrivateOutlet() {
     const auth = useAuth();
-    return auth ? <Outlet /> : <Navigate to="/login" />;
-}
-
-export function PrivateRoute({ children }: {children: any}) {
-    const auth = useAuth();
-    return auth ? children : <Navigate to="/login" />;
+    // return auth.user.isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+     return auth ? <Outlet /> : <Navigate to="/login" />;
 }
